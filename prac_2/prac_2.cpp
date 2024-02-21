@@ -8,6 +8,48 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+void customMasking(){
+    int n;
+    cout << "Enter the value for custom masking: ";
+    cin >> n;
+
+    if( n> 0 && n<=32){
+        if(n>=24){
+            int res = 0;
+            int i = n - 24;
+            for(int j = 0; j<=i; j++){
+                res = res + pow(2, 7 - i);
+            }
+            cout<< "Custom Masking: 255.255.255."<<res;
+        }
+        else if(n>=16){
+            int res = 0;
+            int i = n - 16;
+            for(int j = 0; j<=i; j++){
+                res = res + pow(2, 7 - j);
+            }
+            cout<< "Custom Masking: 255.255."<<res<<".0";
+        }
+        else if(n>=8){
+            int res = 0;
+            int i = n - 16;
+            for(int j = 0; j<=i; j++){
+                res = res + pow(2, 7 - j);
+            }
+            cout<< "Custom Masking: 255."<<res<<".0.0";
+        }
+        else if(n>0){
+            int res = 0;
+            int i = n - 16;
+            for(int j = 0; j<=i; j++){
+                res = res + pow(2, 7 - j);
+            }
+            cout<<"Custom Masking: "<<res<<"0.0.0";
+        }
+    }
+    cout<<endl;
+}
+
 int main(){
     string ip;
     cout << "Enter the IP address: ";
@@ -16,16 +58,12 @@ int main(){
     string arr[6];   
 
     int j = 0;
-    int len = 1;
 
-    for(int i = 0; i<n; i++){
-        if(ip[i]!='.'){
+    for(int i = 0; i<n; i++)
+        if(ip[i]!='.')
             arr[j] = arr[j] + ip[i];
-        } else{
-            len++;
+        else
             j++;
-        }
-    }
 
     bitset<8> arrBits[4];
     for(int i = 0; i<4; i++){
@@ -93,11 +131,11 @@ int main(){
     if (stoi(arr[0]) >= 240 && stoi(arr[0]) <= 255) {
         cout << "No network address available for class E" << endl;
         cout << "No net ID available" << endl;
-        cout << "No host address available for class D" << endl;
+        cout << "No host address available for class E" << endl;
         cout << "No host ID available" << endl;
         cout << "No first address and last address available" << endl;
     }
-
+    customMasking();
     
     return 0;
 }

@@ -24,7 +24,7 @@ x = inp.split('.')
 if(int(x[0])>=1 and int(x[0])<=126):
     print(f"Network address :{x[0]}.0.0.0")
     print(f"Net id :{x[0]}")
-    print(f"Host address : 0.{x[1]}.{x[2]}.{x[3]})
+    print(f"Host address : 0.{x[1]}.{x[2]}.{x[3]}")
     print("Host ID : ", x[1]+"."+x[2]+"."+x[3])
     print("First address : ",x[0] + ".0.0.0")
     print("Last address : ",x[0]+"."+"255.255.255")
