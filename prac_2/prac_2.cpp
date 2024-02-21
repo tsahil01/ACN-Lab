@@ -45,6 +45,8 @@ void customMasking(){
                 res = res + pow(2, 7 - j);
             }
             cout<<"Custom Masking: "<<res<<"0.0.0";
+        } else{
+            cout <<"Invalid Value";
         }
     }
     cout<<endl;
