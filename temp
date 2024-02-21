@@ -1,0 +1,62 @@
+Enter the Ipv4 address string: 4.a.0.1
+
+Enter:
+1. To check leading zeors.
+2. To check the range of IP address and Check if contains integer values.
+3. To check cell should have exactaly 4 cells
+4. To check each Ip cell value should be seperated by dot/period only
+5. To check the Class of Ip address
+6. To check if it is a special IP address or not.
+enter input: 1
+Error: There should be no leading zeros in the IPv4 address string: 0
+
+Enter:
+1. To check leading zeors.
+2. To check the range of IP address and Check if contains integer values.
+3. To check cell should have exactaly 4 cells
+4. To check each Ip cell value should be seperated by dot/period only
+5. To check the Class of Ip address
+6. To check if it is a special IP address or not.
+enter input: 2
+ERROR: The entered Ipv4 does not contain only integer values
+No range error.
+
+Enter:
+1. To check leading zeors.
+2. To check the range of IP address and Check if contains integer values.
+3. To check cell should have exactaly 4 cells
+4. To check each Ip cell value should be seperated by dot/period only
+5. To check the Class of Ip address
+6. To check if it is a special IP address or not.
+enter input: 3
+Ip add have 4 cells
+
+Enter:
+1. To check leading zeors.
+2. To check the range of IP address and Check if contains integer values.
+3. To check cell should have exactaly 4 cells
+4. To check each Ip cell value should be seperated by dot/period only
+5. To check the Class of Ip address
+6. To check if it is a special IP address or not.
+enter input: 4
+ERROR: Each Ip cell value should be seperated by dot/period only. Error: a
+
+Enter:
+1. To check leading zeors.
+2. To check the range of IP address and Check if contains integer values.
+3. To check cell should have exactaly 4 cells
+4. To check each Ip cell value should be seperated by dot/period only
+5. To check the Class of Ip address
+6. To check if it is a special IP address or not.
+enter input: 5
+Class A
+
+Enter:
+1. To check leading zeors.
+2. To check the range of IP address and Check if contains integer values.
+3. To check cell should have exactaly 4 cells
+4. To check each Ip cell value should be seperated by dot/period only
+5. To check the Class of Ip address
+6. To check if it is a special IP address or not.
+enter input: 6
+It is a Special Ip address
