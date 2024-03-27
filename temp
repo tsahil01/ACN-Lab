@@ -1,62 +1,18 @@
-Enter the Ipv4 address string: 4.a.0.1
-
-Enter:
-1. To check leading zeors.
-2. To check the range of IP address and Check if contains integer values.
-3. To check cell should have exactaly 4 cells
-4. To check each Ip cell value should be seperated by dot/period only
-5. To check the Class of Ip address
-6. To check if it is a special IP address or not.
-enter input: 1
-Error: There should be no leading zeros in the IPv4 address string: 0
-
-Enter:
-1. To check leading zeors.
-2. To check the range of IP address and Check if contains integer values.
-3. To check cell should have exactaly 4 cells
-4. To check each Ip cell value should be seperated by dot/period only
-5. To check the Class of Ip address
-6. To check if it is a special IP address or not.
-enter input: 2
-ERROR: The entered Ipv4 does not contain only integer values
-No range error.
-
-Enter:
-1. To check leading zeors.
-2. To check the range of IP address and Check if contains integer values.
-3. To check cell should have exactaly 4 cells
-4. To check each Ip cell value should be seperated by dot/period only
-5. To check the Class of Ip address
-6. To check if it is a special IP address or not.
-enter input: 3
-Ip add have 4 cells
-
-Enter:
-1. To check leading zeors.
-2. To check the range of IP address and Check if contains integer values.
-3. To check cell should have exactaly 4 cells
-4. To check each Ip cell value should be seperated by dot/period only
-5. To check the Class of Ip address
-6. To check if it is a special IP address or not.
-enter input: 4
-ERROR: Each Ip cell value should be seperated by dot/period only. Error: a
-
-Enter:
-1. To check leading zeors.
-2. To check the range of IP address and Check if contains integer values.
-3. To check cell should have exactaly 4 cells
-4. To check each Ip cell value should be seperated by dot/period only
-5. To check the Class of Ip address
-6. To check if it is a special IP address or not.
-enter input: 5
+Enter IP address in binary format:00010111.10101010.00110011.10101001
 Class A
+Network address :00010111.0.0.0
+Net id :00010111
+Host address : 0.10101010.00110011.10101001
+Host ID : 10101010.00110011.10101001
+First address : 00010111.0.0.0
+Last address : 00010111.255.255.255
+Total number of address : 16581375
+Enter the custom masking value:20
+255.255.240.0
 
-Enter:
-1. To check leading zeors.
-2. To check the range of IP address and Check if contains integer values.
-3. To check cell should have exactaly 4 cells
-4. To check each Ip cell value should be seperated by dot/period only
-5. To check the Class of Ip address
-6. To check if it is a special IP address or not.
-enter input: 6
-It is a Special Ip address
+
+
+Enter IP address in binary format:111111111.10101010.00110011.10101001
+Invalid Ip address
+Enter the custom masking value:59
+Out of range error for custom masking
