@@ -1,32 +1,56 @@
 import socket
+import threading
 
-server_socket = socket.socket()
+def receive_messages(conn):
+    while True:
+        try:
+            data = conn.recv(1024).decode()
+            if not data:
+                break
+            print('Msg from Client:', data)
+        except socket.error as e:
+            print("Error receiving data:", e)
+            break
 
-hostname = socket.gethostname()
-print(hostname)
+def send_messages(conn):
+    while True:
+        try:
+            msg = input('Send your msg:\n')
+            conn.send(msg.encode())
+            if msg.lower().strip() == "bye":
+                break
+        except socket.error as e:
+            print("Error sending data:", e)
+            break
 
-ipAddr = socket.gethostbyname(hostname)
-port = 5002
+def main():
+    server_socket = socket.socket()
 
-server_socket.bind((hostname, port))
-server_socket.listen(2)
+    hostname = socket.gethostname()
+    print('Server hostname:', hostname)
 
-conn, addr = server_socket.accept()
-print('Connection from: ' + str(addr))
+    ipAddr = socket.gethostbyname(hostname)
+    port = 5001
 
-while True:
-    data = conn.recv(1024).decode()
-    if not data:
-        break
-    print('Msg from Client : ' + str(data))
-    response = input('Send your response: \n')
-    conn.send(response.encode())  # Send response to client
+    server_socket.bind((hostname, port))
+    server_socket.listen(2)
 
-    # Receive client's message
-    data = conn.recv(1024).decode()
-    if not data:
-        break
-    print('Msg from Client : ' + str(data))
+    print('Server listening on', ipAddr, 'port', port)
 
-conn.close()
-server_socket.close()
+    conn, addr = server_socket.accept()
+    print('Connected to:', addr)
+
+    receive_thread = threading.Thread(target=receive_messages, args=(conn,))
+    send_thread = threading.Thread(target=send_messages, args=(conn,))
+
+    receive_thread.start()
+    send_thread.start()
+
+    receive_thread.join()
+    send_thread.join()
+
+    conn.close()
+    server_socket.close()
+
+if __name__ == "__main__":
+    main()

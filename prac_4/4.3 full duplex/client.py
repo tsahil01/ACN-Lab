@@ -1,26 +1,49 @@
 import socket
+import threading
 
-client_socket = socket.socket()
-hostname = socket.gethostname()
-print(hostname)
+def receive_messages(client_socket):
+    while True:
+        try:
+            data = client_socket.recv(1024).decode()
+            if not data:
+                break
+            print('Msg from Server:', data)
+        except socket.error as e:
+            print("Error receiving data:", e)
+            break
 
-ipAddr = socket.gethostbyname(hostname)
-port = 5002
+def send_messages(client_socket):
+    while True:
+        try:
+            msg = input('Send your msg:\n')
+            client_socket.send(msg.encode())
+            if msg.lower().strip() == "bye":
+                break
+        except socket.error as e:
+            print("Error sending data:", e)
+            break
 
-client_socket.connect((ipAddr, port))
+def main():
+    client_socket = socket.socket()
 
-while True:
-    msg = input('Send your msg: \n')  # take input
-    client_socket.send(msg.encode())  # send msg
+    hostname = socket.gethostname()
+    print('Client hostname:', hostname)
 
-    # Receive server's response
-    data = client_socket.recv(1024).decode()
-    if not data:
-        break
-    print("Msg from Server : " + data)
+    ipAddr = socket.gethostbyname(hostname)
+    port = 5001
 
-    # If the sent message is "bye", break the loop
-    if msg.lower().strip() == "bye":
-        break
+    client_socket.connect((ipAddr, port))
 
-client_socket.close()
+    receive_thread = threading.Thread(target=receive_messages, args=(client_socket,))
+    send_thread = threading.Thread(target=send_messages, args=(client_socket,))
+
+    receive_thread.start()
+    send_thread.start()
+
+    receive_thread.join()
+    send_thread.join()
+
+    client_socket.close()
+
+if __name__ == "__main__":
+    main()
