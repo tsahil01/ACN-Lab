@@ -8,7 +8,7 @@ print(hostname)
 ipAddr = socket.gethostbyname(hostname) # gets the ipAddr using the hostname like "www.google.com"
 # print(ipAddr)
 
-port = 5001
+port = 5002
 
 server_socket.bind((hostname, port)) # binds host addr and port together
 server_socket.listen(2)
@@ -30,3 +30,6 @@ while True:
     conn.send(data.encode()) # send data to client
 
 conn.close()
+
+
+

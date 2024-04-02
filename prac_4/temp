@@ -1,0 +1,14 @@
+sahil@HP-laptop-15s:/ANC/ACN-Lab/prac_4/4.1 simplex$ python3 client.py
+
+HP-laptop-15s
+Send your msg: 
+Hello
+Msg from Server : How are you Server?
+Send your response: 
+All good here Client.
+Msg from Server : bye
+Send your response: 
+ok bye
+Msg from Server : Bye
+Send your response: 
+bye

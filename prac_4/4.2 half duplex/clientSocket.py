@@ -1,17 +1,13 @@
 import socket
 
 client_socket = socket.socket()
-
 hostname = socket.gethostname()
 print(hostname)
 
-ipAddr = socket.gethostbyname(hostname) # gets the ipAddr using the hostname like "www.google.com"
-# print(ipAddr)
-
-port = 5001
+ipAddr = socket.gethostbyname(hostname) 
+port = 5002
 
 client_socket.connect((ipAddr, port)) 
-
 msg = input('Send your msg: \n') # take input
 
 while msg.lower().strip() != "bye":
@@ -19,7 +15,9 @@ while msg.lower().strip() != "bye":
     data = client_socket.recv(1024).decode()
 
     print("Msg from Server : "+ data)
-
     msg = input('Send your response: \n')
 
 client_socket.close()
+
+
+

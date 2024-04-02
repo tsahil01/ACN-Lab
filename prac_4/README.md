@@ -17,3 +17,24 @@ close()             # to close connection
 ```
 
 ![img](https://miro.medium.com/v2/resize:fit:543/1*dw4cFoQ2OL2SjybxzU1DHA.jpeg)
+
+```sh
+sahil@HP-laptop-15s:/SEM6/ANC/ACN-Lab/prac_4$ python3 clientSocket.py 
+HP-laptop-15s
+Send your msg: 
+Hello from Client
+Msg from Server : Hi Client, This is your Server
+Send your response: 
+Bye
+sahil@HP-laptop-15s:/SEM6/ANC/ACN-Lab/prac_4$
+```
+
+```sh
+sahil@HP-laptop-15s:/SEM6/ANC/ACN-Lab/prac_4$ python3 serverSocket.py 
+HP-laptop-15s
+Connection from: ('127.0.0.1', 38230)
+Msg from Client : Hello from Client
+Send your response: 
+Hi Client, This is your Server
+sahil@HP-laptop-15s:/SEM6/ANC/ACN-Lab/prac_4$
+```
