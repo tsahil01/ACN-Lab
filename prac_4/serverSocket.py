@@ -2,13 +2,13 @@ import socket
 
 server_socket = socket.socket()
 
-hostname = "192.168.226.13"
+hostname = socket.gethostname()
 print(hostname)
 
 ipAddr = socket.gethostbyname(hostname) # gets the ipAddr using the hostname like "www.google.com"
 # print(ipAddr)
 
-port = 5002
+port = 5001
 
 server_socket.bind((hostname, port)) # binds host addr and port together
 server_socket.listen(2)

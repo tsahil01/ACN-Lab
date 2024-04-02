@@ -8,9 +8,9 @@ print(hostname)
 ipAddr = socket.gethostbyname(hostname) # gets the ipAddr using the hostname like "www.google.com"
 # print(ipAddr)
 
-port = 5002
+port = 5001
 
-client_socket.connect((hostname, port)) 
+client_socket.connect((ipAddr, port)) 
 
 msg = input('Send your msg: \n') # take input
 
