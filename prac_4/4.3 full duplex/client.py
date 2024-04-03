@@ -15,7 +15,7 @@ def receive_messages(client_socket):
 def send_messages(client_socket):
     while True:
         try:
-            msg = input('Send your msg:\n')
+            msg = input('Send your msg (type "bye" to quit):\n')
             client_socket.send(msg.encode())
             if msg.lower().strip() == "bye":
                 break
@@ -24,26 +24,27 @@ def send_messages(client_socket):
             break
 
 def main():
-    client_socket = socket.socket()
-
-    hostname = socket.gethostname()
-    print('Client hostname:', hostname)
-
-    ipAddr = socket.gethostbyname(hostname)
+    server_ip = "192.168.226.13"  # Replace with the server's IP address
     port = 5001
 
-    client_socket.connect((ipAddr, port))
+    try:
+        client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        client_socket.connect((server_ip, port))
+        print("Connected to server.")
 
-    receive_thread = threading.Thread(target=receive_messages, args=(client_socket,))
-    send_thread = threading.Thread(target=send_messages, args=(client_socket,))
+        receive_thread = threading.Thread(target=receive_messages, args=(client_socket,))
+        send_thread = threading.Thread(target=send_messages, args=(client_socket,))
 
-    receive_thread.start()
-    send_thread.start()
+        receive_thread.start()
+        send_thread.start()
 
-    receive_thread.join()
-    send_thread.join()
+        receive_thread.join()
+        send_thread.join()
 
-    client_socket.close()
+        client_socket.close()
+
+    except Exception as e:
+        print("Error:", e)
 
 if __name__ == "__main__":
     main()

@@ -1,56 +1,45 @@
 import socket
 import threading
 
-def receive_messages(conn):
-    while True:
-        try:
+def handle_client(conn, addr):
+    print('Connected to:', addr)
+
+    try:
+        while True:
             data = conn.recv(1024).decode()
             if not data:
                 break
-            print('Msg from Client:', data)
-        except socket.error as e:
-            print("Error receiving data:", e)
-            break
-
-def send_messages(conn):
-    while True:
-        try:
-            msg = input('Send your msg:\n')
-            conn.send(msg.encode())
-            if msg.lower().strip() == "bye":
+            print('Msg from Client {}: {}'.format(addr, data))
+            if data.lower().strip() == "bye":
                 break
-        except socket.error as e:
-            print("Error sending data:", e)
-            break
+            conn.sendall("Message received".encode())
+    except Exception as e:
+        print("Error handling client {}: {}".format(addr, e))
+
+    print('Disconnected from:', addr)
+    conn.close()
 
 def main():
-    server_socket = socket.socket()
+    server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
     hostname = socket.gethostname()
-    print('Server hostname:', hostname)
+    ipAddr = "192.168.226.13"
+    port = 5002
 
-    ipAddr = socket.gethostbyname(hostname)
-    port = 5001
-
-    server_socket.bind((hostname, port))
-    server_socket.listen(2)
+    server_socket.bind((ipAddr, port))
+    server_socket.listen(2)  # Allow up to 2 clients to wait in the queue
 
     print('Server listening on', ipAddr, 'port', port)
 
-    conn, addr = server_socket.accept()
-    print('Connected to:', addr)
-
-    receive_thread = threading.Thread(target=receive_messages, args=(conn,))
-    send_thread = threading.Thread(target=send_messages, args=(conn,))
-
-    receive_thread.start()
-    send_thread.start()
-
-    receive_thread.join()
-    send_thread.join()
-
-    conn.close()
-    server_socket.close()
+    try:
+        while True:
+            conn, addr = server_socket.accept()
+            client_handler = threading.Thread(target=handle_client, args=(conn, addr))
+            client_handler.start()
+    except KeyboardInterrupt:
+        print("Server shutting down...")
+    finally:
+        server_socket.close()
 
 if __name__ == "__main__":
     main()
